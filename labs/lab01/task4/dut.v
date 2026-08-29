@@ -1,12 +1,18 @@
+// dut.v
+// Wrapper module for Task 4.
+// Currently selects the 64-bit flat CLA implementation.
+
 module dut(
+
   input  [63:0] a,
   input  [63:0] b,
   input         cin,
   output [63:0] sum,
   output        cout
+
 );
 
-  // Option 1: 64-bit ripple carry
+  // ---- Option 1: 64-bit ripple-carry adder ----
   // rca64 U_IMPL (
   //   .a(a),
   //   .b(b),
@@ -15,7 +21,7 @@ module dut(
   //   .cout(cout)
   // );
 
-  // Option 2: flat 64-bit CLA
+  // ---- Option 2: flat (unblocked) 64-bit carry-lookahead adder ----
   cla64_flat U_IMPL (
     .a(a),
     .b(b),
@@ -24,7 +30,7 @@ module dut(
     .cout(cout)
   );
 
-  // Option 3: blocked 64-bit CLA
+  // ---- Option 3: blocked 64-bit carry-lookahead adder ----
   // cla64_blocked U_IMPL (
   //   .a(a),
   //   .b(b),
